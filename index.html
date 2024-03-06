@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Traffic and Road Signs Recognition</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      background-image: url('https://i.pinimg.com/564x/1a/5a/b8/1a5ab807a60b4aab05a4762fffeab012.jpg');
+      background-size: cover;
+    }
+    .footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      width: 100%;
+      overflow: hidden;
+     
+}
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .carousel-container {
+      max-width: 600px;
+      margin: 20px auto;
+      height: 400px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      position: relative; /* Added */
+    }
+
+    .carousel-slide {
+      display: flex;
+      width: 300%; /* Three times the width of each slide */
+      transition: transform 0.5s ease;
+    }
+
+    .carousel-slide img {
+      width: 100%; /* Ensure images fill the container */
+      height: auto;
+    }
+
+    .tfjs-example-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .title-area {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .title-area h1 {
+      color: #333;
+      font-size: 24px;
+      margin: 0;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .section-head {
+      color: #333;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    #file-container {
+      margin-bottom: 20px;
+    }
+
+    #predictions {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .pred-container {
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .pred-container > div {
+      margin-right: 20px;
+      vertical-align: top;
+    }
+
+    .row {
+      display: table-row;
+    }
+
+    .cell {
+      display: table-cell;
+      padding-right: 20px;
+    }
+
+    #files {
+      display: none;
+    }
+
+    .upload-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .upload-btn:hover {
+      background-color: #45a049;
+    }
+
+    #cat {
+      display: none;
+    }.carousel-container {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .carousel-image {
+    flex: 0 0 100%;
+  }
+
+  .carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+  }
+
+  .carousel-button:hover {
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+    /* Added styles for buttons */
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.5);
+      border: none;
+      border-radius: 50%;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 20px;
+      color: #333;
+      z-index: 1;
+    }
+
+    .carousel-control:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="images.html">Images</a>
+  </div>
+  <div class="tfjs-example-container">
+  <h1>Traffic and Road Signs Recognition</h1>
+  <h2>About our project</h2>
+  <p>This is website could be used for study of road-signs</p>
+  <p>User must upload image of sign that he/she want to know below </p>
+  <p>so output will be name of that sign and description </p>
+  <h2>Classes</h2>
+  <h3>Here are some names of road signs that currently available to recognize on our site</h3>
+  <p>Give way</p>
+  <p>Stop</p>
+  <p>Truck Traffic prohibbeted</p>
+  <h3>Below in carousel is example road sing images </h3>
+  <h4>(Note that those images could not be used for testing our recognizer because they are webp format)</h4>
+  <h4>(Use images to test from "images" in navigation bar or use your images)</h4>
+</div>
+<div class="carousel-container">
+  <div class="carousel-images">
+    <img src="https://www.shutterstock.com/image-photo/give-way-uk-road-sign-600nw-252230185.jpg" alt="Image 1" class="carousel-image">
+    <img src="https://st.depositphotos.com/1796354/1444/i/450/depositphotos_14448503-stock-illustration-stop-label-signage-with-texture.jpg" alt="Image 2" class="carousel-image">
+    <img src="https://www.shutterstock.com/image-photo/no-trucks-square-sign-symbol-600nw-2358543511.jpg" alt="Image 3" class="carousel-image">
+    
+  </div>
+  <button class="carousel-button prev" onclick="prevSlide()">Prev</button>
+  <button class="carousel-button next" onclick="nextSlide()">Next</button>
+</div>
+
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.carousel-image');
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.transform = `translateX(-${index * 100}%)`;
+    });
+    currentIndex = index;
+  }
+
+  function nextSlide() {
+    if (currentIndex < slides.length - 1) {
+      currentIndex++;
+    } else {
+      currentIndex = 0;
+    }
+    showSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    if (currentIndex > 0) {
+      currentIndex--;
+    } else {
+      currentIndex = slides.length - 1;
+    }
+    showSlide(currentIndex);
+  }
+</script>
+
+  <div class="tfjs-example-container">
+    <section class='title-area'>
+      
+    </section>
+
+    <section>
+      <p class='section-head'></p>
+      <div id="status"></div>
+    </section>
+
+    <section>
+      <p class='section-head'>To get information about sign that you looking for</p>
+
+      <div id="file-container">
+        <label for="files" class="upload-btn">Upload an image</label>
+        <input type="file" id="files" name="files[]" multiple />
+      </div>
+
+      <div id="predictions"></div>
+
+      <img id="cat" src="cat.jpg" width=150 height=150 />
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0/dist/tf.min.js"></script>
+    <script src="index.js"></script>
+    
+  </div>
+  <div class="navbar" style="text-align: center;">
+    <p style="color: #ffffff;">This project was made by</p>
+    <p style="color: #ffffff;">Iliya Lim Amirzhan Issa Azimzhanov Rakhim</p>
+    <p style="color: #ffffff;">IT-2208</p>
+
+  </div>
+  
+</body>
+
+</html>
