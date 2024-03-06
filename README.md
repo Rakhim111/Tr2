@@ -1,15 +1,6 @@
 # Final project
 video https://www.youtube.com/watch?v=PKPsuBqPRqg. deploy https://tr-1.onrender.com/
 
-
-
-
-
-
-
-
-
-
 # Introduction
 ### Problem
 
@@ -92,15 +83,24 @@ Input are multiplied by some weights, then their sum is passed to the activation
 
 ![Screenshot 2024-03-06 210611](https://github.com/iliyaLL/traffic-sign-recognition/assets/111357743/b0a0f945-8d42-49a0-8923-2b1dd2c919a0)
 ![Screenshot 2024-03-06 210810](https://github.com/iliyaLL/traffic-sign-recognition/assets/111357743/242abca2-edce-46fd-aff0-92aa7de675c0)
+![Screenshot 2024-03-06 230516](https://github.com/iliyaLL/traffic-sign-recognition/assets/111357743/58c3ab97-5bf0-48a4-88dc-de53849e9986)
 
 # Results
 The model was trained on 10 epoch, achieving the val_accuracy of 97% and loss of
 0.0878.
+
+![Screenshot 2024-03-06 213031](https://github.com/iliyaLL/traffic-sign-recognition/assets/111357743/80ff3b98-070f-43bc-b4d6-9f6714649106)
+![Screenshot 2024-03-06 213113](https://github.com/iliyaLL/traffic-sign-recognition/assets/111357743/2ea9439e-4e8d-4cd2-b9c0-b16193498008)
+
 The application running in the web performs good overall while still gives produces
 errors.
 Example of the correct recognition:
 
+![Screenshot 2024-03-06 213419](https://github.com/iliyaLL/traffic-sign-recognition/assets/111357743/f5d5a68a-37ac-45cd-bbc9-70c5a348ad0a)
+
 Example of the incorrect one:
+
+![Screenshot 2024-03-06 213556](https://github.com/iliyaLL/traffic-sign-recognition/assets/111357743/624b08b1-7eaa-49b2-8695-ee075ab39165)
 
 # Discussion
 
